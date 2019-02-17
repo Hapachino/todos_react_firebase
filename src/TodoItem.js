@@ -15,25 +15,33 @@ class TodoItem extends Component {
 
   }
 
-  handleEditingStart() {
+  completeTodo = () => {
+    this.setState({
+      completed: !this.state.completed,
+    });
+  }
+
+  handleEditingStart = () => {
 
   }
 
-  handleEditing() {
+  handleEditing = () => {
 
   }
 
   render() {
-    const { editing, todoText } = this.state;
+    const { completeTodo } = this;
+    const { todoText, completed, editing } = this.state;
     const { index, deleteTodo } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
+    const completedStyle = completed ? { textDecoration: 'line-through' } : '';
     
     return (
       <div className="collection-item">
         <div style={{ display: viewStyle }}>
           <span
-            style={{ display: 'inline-block', width: '70%' }}
+            style={{ display: 'inline-block', width: '70%', ...completedStyle }}
           >
             {todoText}
           </span>
@@ -43,6 +51,7 @@ class TodoItem extends Component {
           >
             <button 
               className="btn green"
+              onClick={() => completeTodo()}
             >
               <i className="material-icons">check</i>
             </button>
