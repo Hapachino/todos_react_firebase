@@ -29,6 +29,14 @@ class TodoItem extends Component {
     });
   }
 
+  handleEditingOnEnter = e => {
+    if (e.key === 'Enter') {
+      this.setState({
+        editing: false,
+      });
+    }
+  }
+
   handleEditingStart = () => {
     this.setState({
       editing: true,
@@ -42,7 +50,7 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { completeTodo, handleEditing, handleEditingOnBlur, handleEditingStart } = this;
+    const { completeTodo, handleEditing, handleEditingOnBlur, handleEditingOnEnter, handleEditingStart } = this;
     const { todoText, completed, editing } = this.state;
     const { index, deleteTodo } = this.props;
     const viewStyle = editing ? 'none' : 'block';
@@ -83,7 +91,8 @@ class TodoItem extends Component {
           ref={el => this.input = el}
           value={todoText}
           onChange={handleEditing}
-          onBlur={handleEditingOnBlur}  
+          onBlur={handleEditingOnBlur}
+          onKeyDown={handleEditingOnEnter}
         />
       </div>
     );
