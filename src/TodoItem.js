@@ -5,7 +5,7 @@ class TodoItem extends Component {
     super(props);
 
     this.state = {
-      text: this.props.text,
+      todoText: this.props.todoText,
       completed: false,
       editing: false,
     };
@@ -28,10 +28,10 @@ class TodoItem extends Component {
     const { index } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
-
+    console.log(viewStyle, editStyle);
     return (
       <div className="collection-item">
-        <div style={{ display: {viewStyle} }}>
+        <div style={{ display: viewStyle }}>
           <span
             style={{ display: 'inline-block'}}
           >
@@ -40,7 +40,7 @@ class TodoItem extends Component {
         </div>
         <input 
           type="text"
-          style={{ display: { editStyle } }}  
+          style={{ display: editStyle }}  
         />
       </div>
     );
