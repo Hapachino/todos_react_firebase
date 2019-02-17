@@ -12,7 +12,9 @@ class TodoItem extends Component {
   }
 
   componentDidUpdate() {
-
+    if (this.state.editing) {
+      this.input.focus();
+    }
   }
 
   completeTodo = () => {
@@ -78,6 +80,7 @@ class TodoItem extends Component {
         <input 
           type="text"
           style={{ display: editStyle }}
+          ref={el => this.input = el}
           value={todoText}
           onChange={handleEditing}
           onBlur={handleEditingOnBlur}  
