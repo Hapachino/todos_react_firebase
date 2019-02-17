@@ -1,26 +1,21 @@
 {
-  "name": "todos_react_php",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "materialize-css": "^1.0.0",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5"
-  },
+  "name": "todos_react_php.git",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm start --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hapachino/todos_react_php.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hapachino/todos_react_php/issues"
+  },
+  "homepage": "https://github.com/Hapachino/todos_react_php#readme"
 }
