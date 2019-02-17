@@ -35,8 +35,16 @@ class App extends Component {
     }
   }
 
+  deleteTodo(key) {
+    const todos = this.state.todos.filter((_, index) => key !== index);
+    
+    this.setState(
+      todos,
+    );
+  }
+
   render() {
-    const { state: { todoText, todos }, handleTextChange, addTodo } = this;
+    const { state: { todoText, todos }, handleTextChange, addTodo, deleteTodo } = this;
 
     return (
       <div className="container">
@@ -47,7 +55,7 @@ class App extends Component {
           addTodo={addTodo}
         />
 
-        <TodoList todos={todos} />
+        <TodoList todos={todos} deleteTodo={deleteTodo} />
       </div>
     );
   }

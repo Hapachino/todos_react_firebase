@@ -24,22 +24,23 @@ class TodoItem extends Component {
   }
 
   render() {
-    const { editing, text } = this.state;
-    const viewStyle = editing ? { display: 'none' } : { display: 'block' };
-    const editStyle = editing ? { display: 'block' } : { display: 'none' };
+    const { editing, todoText } = this.state;
+    const { index } = this.props;
+    const viewStyle = editing ? 'none' : 'block';
+    const editStyle = editing ? 'block' : 'none';
 
     return (
       <div className="collection-item">
-        <div style={viewStyle}>
+        <div style={{ display: {viewStyle} }}>
           <span
             style={{ display: 'inline-block'}}
           >
-          {text}
+            {todoText}
           </span>
         </div>
         <input 
           type="text"
-          style={editStyle}  
+          style={{ display: { editStyle } }}  
         />
       </div>
     );

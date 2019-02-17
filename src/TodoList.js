@@ -2,17 +2,20 @@ import React from 'react';
 import TodoItem from './TodoItem';
 
 export default props => {
-  const todoList = props.todos.length ? 
-    props.todos.map((text, index) => {
-    return (
-      <TodoItem 
-        text={text} 
-        key={index}
-      />
+  const { todos, deleteTodo } = props;
+  const todoList = todos.length ? 
+    todos.map((todoText, index) => {
+      return (
+        <TodoItem 
+          todoText={todoText} 
+          key={index}
+          index={index}
+          deleteTodo={deleteTodo}
+        />
+      );
+    }) : (
+      <p>No Todos.</p>
     );
-  }) : (
-    <p>No Todos.</p>
-  );
 
   return (
     <div className="collection">
