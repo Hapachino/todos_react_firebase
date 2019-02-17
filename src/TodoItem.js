@@ -21,16 +21,26 @@ class TodoItem extends Component {
     });
   }
 
-  handleEditingStart = () => {
-
+  handleEditingOnBlur = () => {
+    this.setState({
+      editing: false,
+    });
   }
 
-  handleEditing = () => {
+  handleEditingStart = () => {
+    this.setState({
+      editing: true,
+    });
+  }
 
+  handleEditing = e => {
+    this.setState({
+      todoText: e.target.value,
+    });
   }
 
   render() {
-    const { completeTodo } = this;
+    const { completeTodo, handleEditing, handleEditingOnBlur, handleEditingStart } = this;
     const { todoText, completed, editing } = this.state;
     const { index, deleteTodo } = this.props;
     const viewStyle = editing ? 'none' : 'block';
@@ -42,6 +52,7 @@ class TodoItem extends Component {
         <div style={{ display: viewStyle }}>
           <span
             style={{ display: 'inline-block', width: '70%', ...completedStyle }}
+            onDoubleClick={() => {handleEditingStart()}}
           >
             {todoText}
           </span>
@@ -51,7 +62,7 @@ class TodoItem extends Component {
           >
             <button 
               className="btn green"
-              onClick={() => completeTodo()}
+              onClick={completeTodo}
             >
               <i className="material-icons">check</i>
             </button>
@@ -66,7 +77,10 @@ class TodoItem extends Component {
         </div>
         <input 
           type="text"
-          style={{ display: editStyle }}  
+          style={{ display: editStyle }}
+          value={todoText}
+          onChange={handleEditing}
+          onBlur={handleEditingOnBlur}  
         />
       </div>
     );
