@@ -35,17 +35,17 @@ class App extends Component {
     }
   }
 
-  deleteTodo(key) {
+  deleteTodo = key => {
     const todos = this.state.todos.filter((_, index) => key !== index);
     
-    this.setState(
+    this.setState({
       todos,
-    );
+    });
   }
 
   render() {
     const { state: { todoText, todos }, handleTextChange, addTodo, deleteTodo } = this;
-
+    
     return (
       <div className="container">
         <h1 className="center red-text">todos</h1>

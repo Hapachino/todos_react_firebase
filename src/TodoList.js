@@ -14,7 +14,7 @@ export default props => {
         />
       );
     }) : (
-      <p>No Todos.</p>
+      <p>No todos.</p>
     );
 
   return (

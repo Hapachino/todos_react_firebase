@@ -25,18 +25,35 @@ class TodoItem extends Component {
 
   render() {
     const { editing, todoText } = this.state;
-    const { index } = this.props;
+    const { index, deleteTodo } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
-    console.log(viewStyle, editStyle);
+    
     return (
       <div className="collection-item">
         <div style={{ display: viewStyle }}>
           <span
-            style={{ display: 'inline-block'}}
+            style={{ display: 'inline-block', width: '70%' }}
           >
             {todoText}
           </span>
+          <div 
+            style={{ display: 'inline-block', width: '30%' }}
+            className="right-align"
+          >
+            <button 
+              className="btn green"
+            >
+              <i className="material-icons">check</i>
+            </button>
+            {' '}
+            <button
+              className="btn red darken-2"
+              onClick={() => deleteTodo(index)}
+            >
+              <i className="material-icons">delete</i>
+            </button>
+          </div>
         </div>
         <input 
           type="text"
