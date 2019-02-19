@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import TodoList from './TodoList';
 import InputBar from './InputBar';
 import './App.css';
@@ -16,6 +17,10 @@ class App extends Component {
       todoText: '',
       todos,
     }
+  }
+
+  componentDidMount() {
+
   }
 
   handleTextChange = e => {
