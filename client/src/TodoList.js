@@ -4,12 +4,15 @@ import TodoItem from './TodoItem';
 export default props => {
   const { todos, deleteTodo } = props;
   const todoList = todos.length ? 
-    todos.map((todoText, index) => {
+    todos.map(todo => {
+      const { id, todoText, completed } = todo;
+      console.log(todo);
       return (
         <TodoItem 
           todoText={todoText} 
-          key={index}
-          index={index}
+          completed={completed}
+          key={id}
+          index={id}
           deleteTodo={deleteTodo}
         />
       );

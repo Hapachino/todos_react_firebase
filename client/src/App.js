@@ -20,15 +20,11 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const { data: todoRows } = await axios.get('http://localhost:8080/todos_react_php/api/getTodos.php');
-
-    const todos = todoRows.map(todo => todo.todoText);
+    const { data: todos } = await axios.get('http://localhost:8080/todos_react_php/api/getTodos.php');
 
     this.setState({
       todos,
     });
-    
-    console.log(todos);
   }
 
   handleTextChange = e => {
