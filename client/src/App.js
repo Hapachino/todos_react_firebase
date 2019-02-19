@@ -4,10 +4,10 @@ import TodoList from './TodoList';
 import InputBar from './InputBar';
 import './App.css';
 
-const todos = [
-  'Buy milk',
-  'Wash car',
-];
+// const todos = [
+//   'Buy milk',
+//   'Wash car',
+// ];
 
 class App extends Component {
   constructor(props) {
@@ -15,14 +15,20 @@ class App extends Component {
 
     this.state = {
       todoText: '',
-      todos,
+      todos: [],
     }
   }
 
   async componentDidMount() {
-    const result = await axios.get('http://localhost:8080/todos_react_php/api/getTodos.php');
+    const { data: todoRows } = await axios.get('http://localhost:8080/todos_react_php/api/getTodos.php');
 
-    console.log(result);
+    const todos = todoRows.map(todo => todo.todoText);
+
+    this.setState({
+      todos,
+    });
+    
+    console.log(todos);
   }
 
   handleTextChange = e => {
