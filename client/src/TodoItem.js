@@ -6,7 +6,7 @@ class TodoItem extends Component {
 
     this.state = {
       todoText: this.props.todoText,
-      completed: false,
+      completed: this.props.completed,
       editing: false,
     };
   }
