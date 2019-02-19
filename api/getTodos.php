@@ -8,7 +8,6 @@ $getTodosQuery = $link->prepare("SELECT *
 $userId = 1;
 $getTodosQuery->bind_param("i", $userId);
 $getTodosQuery->execute();
-
 $getTodosQuery->bind_result($id, $userId, $todoText, $completed);
 
 $todos = [];
