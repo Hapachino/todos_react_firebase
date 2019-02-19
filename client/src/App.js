@@ -19,8 +19,10 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const result = await axios.get('http://localhost:8080/todos_react_php/api/getTodos.php');
 
+    console.log(result);
   }
 
   handleTextChange = e => {
