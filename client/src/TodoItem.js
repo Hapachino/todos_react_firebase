@@ -6,8 +6,6 @@ class TodoItem extends Component {
     super(props);
 
     this.state = {
-      // todoText: this.props.todoText,
-      // completed: this.props.completed,
       editing: false,
     };
   }
@@ -22,6 +20,7 @@ class TodoItem extends Component {
     const { id, getTodos } = this.props;
     
     await axios.post('/api/completeTodo.php', { id });
+
     await getTodos();
   }
 
@@ -53,8 +52,8 @@ class TodoItem extends Component {
 
   render() {
     const { completeTodo, handleEditing, handleEditingOnBlur, handleEditingOnEnter, handleEditingStart } = this;
-    const { todoText, completed, editing } = this.state;
-    const { index, deleteTodo } = this.props;
+    const { editing } = this.state;
+    const { todoText, index, deleteTodo } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
     const completedStyle = this.props.completed ? { textDecoration: 'line-through' } : '';

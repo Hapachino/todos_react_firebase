@@ -1,6 +1,6 @@
 <?php
 
-require_once("../config/connect.php");
+require_once("../../../config/connect.php");
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");

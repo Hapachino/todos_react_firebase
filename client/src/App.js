@@ -39,7 +39,7 @@ class App extends Component {
 
   getTodos = async () => {
     const { data: todos } = await axios.get('/api/getTodos.php');
-    console.log('h');
+    
     this.setState({
       todos,
     });
