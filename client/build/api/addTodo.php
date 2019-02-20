@@ -8,13 +8,13 @@ header("Content-Type: application/json; charset=UTF-8");
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
-if (isset($_POST["id"]) && !empty($_POST["id"])) {
-  $id = $_POST["id"];
+if (isset($_POST["todoText"]) && !empty($_POST["todoText"])) {
+  $todoText = $_POST["todoText"];
+  $userId = 1;
 
-  $completeTodoQuery = $link->prepare("UPDATE todos 
-                                        SET completed = NOT completed
-                                        WHERE id = ?");
-  $completeTodoQuery->bind_param("i", $id);
+  $completeTodoQuery = $link->prepare("INSERT INTO todos (todoText, userId, completed)
+                                        VALUES ($todoText, $userId, False)");
+  $completeTodoQuery->bind_param("si", $todoText, $userId);
   $completeTodoQuery->execute();
 
   $completeTodoQuery->close();
