@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class TodoItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      todoText: this.props.todoText,
-      completed: this.props.completed,
+      // todoText: this.props.todoText,
+      // completed: this.props.completed,
       editing: false,
     };
   }
@@ -17,10 +18,11 @@ class TodoItem extends Component {
     }
   }
 
-  completeTodo = () => {
-    this.setState({
-      completed: !this.state.completed,
-    });
+  completeTodo = async () => {
+    const { id, getTodos } = this.props;
+    
+    await axios.post('/api/completeTodo.php', { id });
+    await getTodos();
   }
 
   handleEditingOnBlur = () => {
@@ -55,7 +57,7 @@ class TodoItem extends Component {
     const { index, deleteTodo } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
-    const completedStyle = completed ? { textDecoration: 'line-through' } : '';
+    const completedStyle = this.props.completed ? { textDecoration: 'line-through' } : '';
     
     return (
       <div className="collection-item">
@@ -64,7 +66,7 @@ class TodoItem extends Component {
             style={{ display: 'inline-block', width: '70%', ...completedStyle }}
             onDoubleClick={() => {handleEditingStart()}}
           >
-            {todoText}
+            {this.props.todoText}
           </span>
           <div 
             style={{ display: 'inline-block', width: '30%' }}

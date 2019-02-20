@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from './TodoItem';
 
 export default props => {
-  const { todos, deleteTodo } = props;
+  const { todos, deleteTodo, getTodos } = props;
   const todoList = todos.length ? 
     todos.map(todo => {
       const { id, todoText, completed } = todo;
@@ -12,8 +12,9 @@ export default props => {
           todoText={todoText} 
           completed={completed}
           key={id}
-          index={id}
+          id={id}
           deleteTodo={deleteTodo}
+          getTodos={getTodos}
         />
       );
     }) : (

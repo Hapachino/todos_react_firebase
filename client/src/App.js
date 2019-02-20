@@ -4,11 +4,6 @@ import TodoList from './TodoList';
 import InputBar from './InputBar';
 import './App.css';
 
-// const todos = [
-//   'Buy milk',
-//   'Wash car',
-// ];
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,18 +15,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const { data: todos } = await axios.get('http://localhost:8080/todos_react_php/api/getTodos.php');
-
-    this.setState({
-      todos,
-    });
+    this.getTodos();
   }
-
-  handleTextChange = e => {
-    this.setState({
-      todoText: e.target.value,
-    });
-  };
 
   addTodo = e => {
     const { todoText, todos } = this.state;
@@ -52,8 +37,22 @@ class App extends Component {
     });
   }
 
+  getTodos = async () => {
+    const { data: todos } = await axios.get('/api/getTodos.php');
+    console.log('h');
+    this.setState({
+      todos,
+    });
+  }
+
+  handleTextChange = e => {
+    this.setState({
+      todoText: e.target.value,
+    });
+  };
+
   render() {
-    const { state: { todoText, todos }, handleTextChange, addTodo, deleteTodo } = this;
+    const { state: { todoText, todos }, handleTextChange, addTodo, deleteTodo, getTodos } = this;
     
     return (
       <div className="container">
@@ -64,7 +63,7 @@ class App extends Component {
           addTodo={addTodo}
         />
 
-        <TodoList todos={todos} deleteTodo={deleteTodo} />
+        <TodoList todos={todos} deleteTodo={deleteTodo} getTodos={getTodos} />
       </div>
     );
   }
