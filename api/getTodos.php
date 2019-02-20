@@ -1,13 +1,17 @@
 <?php
 
 require_once("../config/connect.php");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Content-Type: application/json; charset=UTF-8");
 
 $getTodosQuery = $link->prepare("SELECT * 
                                   FROM `todos`
-                                  WHERE `user_id` = ?");
+                                  WHERE `userId` = ?");
 $userId = 1;
 $getTodosQuery->bind_param("i", $userId);
 $getTodosQuery->execute();
+
 $getTodosQuery->bind_result($id, $userId, $todoText, $completed);
 
 $todos = [];
@@ -22,6 +26,7 @@ while ($getTodosQuery->fetch()) {
   array_push($todos, $todo);
 }
 
+$getTodosQuery->close();
 $link->close();
 
 print(json_encode($todos));
