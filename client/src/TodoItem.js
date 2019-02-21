@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './TodoItem.css';
 
 class TodoItem extends Component {
   constructor(props) {
@@ -64,14 +65,14 @@ class TodoItem extends Component {
       <div className="collection-item">
         <div style={{ display: viewStyle }}>
           <span
-            style={{ display: 'inline-block', width: '70%', ...completedStyle }}
+            className="inline-70 red-strike"
+            style={{ ...completedStyle }}
             onDoubleClick={() => handleEditingStart()}
           >
             {this.props.todoText}
           </span>
           <div 
-            style={{ display: 'inline-block', width: '30%' }}
-            className="right-align"
+           className="inline-30 right-align"
           >
             <button 
               className={`btn ${completeButtonColor}`}

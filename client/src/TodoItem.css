@@ -1,0 +1,13 @@
+.inline-70 {
+  display: inline-block;
+  width: 70%;
+}
+
+.inline-30 {
+  display: inline-block;
+  width: 30%;
+}
+
+.red-strike {
+  text-decoration-color: red !important;
+}

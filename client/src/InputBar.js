@@ -10,6 +10,7 @@ export default props => {
       value={todoText}
       onChange={handleTextChange}
       onKeyDown={addTodo}
+      className="mb-2"
     />
   );
 };
