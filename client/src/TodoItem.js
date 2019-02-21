@@ -53,12 +53,14 @@ class TodoItem extends Component {
   render() {
     const { completeTodo, handleEditing, handleEditingOnBlur, handleEditingOnEnter, handleEditingStart } = this;
     const { editing } = this.state;
-    const { todoText, id, deleteTodo } = this.props;
+    const { todoText, id, deleteTodo, completed } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
-    const completedStyle = this.props.completed ? { textDecoration: 'line-through' } : '';
-    
-    return (
+    const completedStyle = completed ? { textDecoration: 'line-through' } : '';
+    const completeButtonText = completed ? 'undo' : 'check';
+    const completeButtonColor = completed ? 'orange' : 'green';
+   
+   return (
       <div className="collection-item">
         <div style={{ display: viewStyle }}>
           <span
@@ -72,10 +74,10 @@ class TodoItem extends Component {
             className="right-align"
           >
             <button 
-              className="btn green"
+              className={`btn ${completeButtonColor}`}
               onClick={completeTodo}
             >
-              <i className="material-icons">check</i>
+              <i className="material-icons">{completeButtonText}</i>
             </button>
             {' '}
             <button
