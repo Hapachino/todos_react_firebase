@@ -29,7 +29,7 @@ export default props => {
         />
       );
     }) : (
-      <p>No todos.</p>
+      <div className="collection-item center-align">No todos.</div>
     );
 
   return (
