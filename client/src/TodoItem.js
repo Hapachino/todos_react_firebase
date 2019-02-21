@@ -8,6 +8,7 @@ class TodoItem extends Component {
 
     this.state = {
       editing: false,
+      todoText: props.todoText,
     };
   }
 
@@ -31,11 +32,17 @@ class TodoItem extends Component {
     });
   }
 
-  handleEditingOnEnter = e => {
+  handleEditingOnEnter = async e => {
+    const { props: { id, getTodos } , state: { todoText }} = this;
+
     if (e.key === 'Enter') {
       this.setState({
         editing: false,
       });
+
+      await axios.post('/api/editTodo.php', { id, todoText });
+
+      await getTodos();
     }
   }
 
@@ -53,8 +60,8 @@ class TodoItem extends Component {
 
   render() {
     const { completeTodo, handleEditing, handleEditingOnBlur, handleEditingOnEnter, handleEditingStart } = this;
-    const { editing } = this.state;
-    const { todoText, id, deleteTodo, completed } = this.props;
+    const { editing, todoText } = this.state;
+    const { id, deleteTodo, completed } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
     const completedStyle = completed ? { textDecoration: 'line-through' } : '';
@@ -69,7 +76,7 @@ class TodoItem extends Component {
             style={{ ...completedStyle }}
             onDoubleClick={() => handleEditingStart()}
           >
-            {this.props.todoText}
+            {todoText}
           </span>
           <div 
            className="inline-30 right-align"
