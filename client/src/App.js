@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       todoText: '',
       todos: [],
+      filter: 'all',
     }
   }
 
@@ -47,6 +48,12 @@ class App extends Component {
     });
   }
 
+  handleFilterChange = e => {
+    this.setState({
+      filter: e.target.value,
+    });
+  }
+
   handleTextChange = e => {
     this.setState({
       todoText: e.target.value,
@@ -54,7 +61,7 @@ class App extends Component {
   };
 
   render() {
-    const { state: { todoText, todos }, handleTextChange, addTodo, deleteTodo, getTodos } = this;
+    const { state: { todoText, todos, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo, getTodos } = this;
     
     return (
       <div className="container">
@@ -64,8 +71,16 @@ class App extends Component {
           handleTextChange={handleTextChange}
           addTodo={addTodo}
         />
-        <FilterBar />
-        <TodoList todos={todos} deleteTodo={deleteTodo} getTodos={getTodos} />
+        <FilterBar
+          filter={filter} 
+          handleFilterChange={handleFilterChange} 
+        />
+        <TodoList 
+          todos={todos}
+          filter={filter} 
+          deleteTodo={deleteTodo} 
+          getTodos={getTodos} 
+        />
       </div>
     );
   }

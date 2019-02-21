@@ -6,7 +6,7 @@ class FilterBar extends Component {
     super(props);
 
     this.state = {
-      filter: 'all',
+      filter: props.filter,
     }
 
     this.options = [
@@ -26,21 +26,20 @@ class FilterBar extends Component {
   }
 
   renderRadioButtons = options => {
-    const { state: { filter }, handleOnChange } = this;
+    const { filter, handleFilterChange } = this.props;
 
     const radioButtons = options.map((option, index) => {
       const { label, value } = option;
 
       return (
-        <label>
+        <label key={index}>
           <input
-            key={index}
             className="with-gap"
             name="filter"
             value={value}
             type="radio"
             checked={filter === value}
-            onChange={handleOnChange}
+            onChange={handleFilterChange}
           />
           <span>{label}</span>
         </label>
@@ -52,12 +51,6 @@ class FilterBar extends Component {
         {radioButtons}
       </form>
     );
-  }
-
-  handleOnChange = e => {
-    this.setState({
-      filter: e.target.value,
-    });
   }
 
   render() {
