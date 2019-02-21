@@ -13,7 +13,7 @@ if (isset($_POST["todoText"]) && !empty($_POST["todoText"])) {
   $userId = 1;
 
   $completeTodoQuery = $link->prepare("INSERT INTO todos (todoText, userId, completed)
-                                        VALUES ($todoText, $userId, False)");
+                                        VALUES (?, ?, False)");
   $completeTodoQuery->bind_param("si", $todoText, $userId);
   $completeTodoQuery->execute();
 

@@ -3,7 +3,6 @@ import TodoItem from './TodoItem';
 
 export default props => {
   const { todos, deleteTodo, getTodos } = props;
-  console.log(todos);
   const todoList = todos.length ? 
     todos.map(todo => {
       const { id, todoText, completed } = todo;

@@ -18,14 +18,17 @@ class App extends Component {
     this.getTodos();
   }
 
-  addTodo = e => {
+  addTodo = async e => {
     const { todoText, todos } = this.state;
 
     if (e.key === 'Enter' && todoText) {
-      this.setState({
-        todos: [...todos, todoText],
-        todoText: '',
-      });
+      await axios.post('/api/addTodo.php', { todoText });
+
+      this.getTodos();
+      // this.setState({
+      //   todos: [...todos, todoText],
+      //   todoText: '',
+      // });
     }
   }
 
