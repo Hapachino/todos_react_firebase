@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import TodoList from './TodoList';
 import InputBar from './InputBar';
+import FilterBar from './FilterBar';
+import TodoList from './TodoList';
 import './App.css';
 
 class App extends Component {
@@ -63,7 +64,7 @@ class App extends Component {
           handleTextChange={handleTextChange}
           addTodo={addTodo}
         />
-
+        <FilterBar />
         <TodoList todos={todos} deleteTodo={deleteTodo} getTodos={getTodos} />
       </div>
     );
