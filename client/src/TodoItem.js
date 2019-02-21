@@ -23,7 +23,7 @@ class TodoItem extends Component {
     
     await axios.post('/api/completeTodo.php', { id });
 
-    await getTodos();
+    getTodos();
   }
 
   handleEditingOnBlur = () => {
@@ -42,7 +42,7 @@ class TodoItem extends Component {
 
       await axios.post('/api/editTodo.php', { id, todoText });
 
-      await getTodos();
+      getTodos();
     }
   }
 
