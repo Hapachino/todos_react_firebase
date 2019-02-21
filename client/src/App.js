@@ -25,6 +25,10 @@ class App extends Component {
       await axios.post('/api/addTodo.php', { todoText });
 
       getTodos();
+
+      this.setState({
+        todoText: '',
+      });
     }
   }
 
