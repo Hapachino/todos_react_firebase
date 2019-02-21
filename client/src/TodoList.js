@@ -11,6 +11,8 @@ export default props => {
     } else if (filter === 'completed') {
       return todo.completed;
     }
+
+    return [];
   });
   const todoList = filteredTodos.length ? 
     filteredTodos.map(todo => {
