@@ -6,10 +6,10 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$_PUT = json_decode(file_get_contents('php://input'), true);
+$_POST = json_decode(file_get_contents('php://input'), true);
 
-if (isset($_PUT["id"]) && !empty($_PUT["id"])) {
-  $id = $_PUT["id"];
+if (isset($_POST["id"]) && !empty($_POST["id"])) {
+  $id = $_POST["id"];
 
   $deleteTodoQuery = $link->prepare("DELETE FROM todos
                                     WHERE id = ?");

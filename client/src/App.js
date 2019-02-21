@@ -19,25 +19,19 @@ class App extends Component {
   }
 
   addTodo = async e => {
-    const { todoText, todos } = this.state;
+    const { state: { todoText }, getTodos } = this;
 
     if (e.key === 'Enter' && todoText) {
       await axios.post('/api/addTodo.php', { todoText });
 
-      this.getTodos();
-      // this.setState({
-      //   todos: [...todos, todoText],
-      //   todoText: '',
-      // });
+      getTodos();
     }
   }
 
-  deleteTodo = key => {
-    const todos = this.state.todos.filter((_, index) => key !== index);
+  deleteTodo = async id => {
+    await axios.post('/api/deleteTodo.php', { id });
     
-    this.setState({
-      todos,
-    });
+    await this.getTodos();
   }
 
   getTodos = async () => {

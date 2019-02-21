@@ -53,7 +53,7 @@ class TodoItem extends Component {
   render() {
     const { completeTodo, handleEditing, handleEditingOnBlur, handleEditingOnEnter, handleEditingStart } = this;
     const { editing } = this.state;
-    const { todoText, index, deleteTodo } = this.props;
+    const { todoText, id, deleteTodo } = this.props;
     const viewStyle = editing ? 'none' : 'block';
     const editStyle = editing ? 'block' : 'none';
     const completedStyle = this.props.completed ? { textDecoration: 'line-through' } : '';
@@ -63,7 +63,7 @@ class TodoItem extends Component {
         <div style={{ display: viewStyle }}>
           <span
             style={{ display: 'inline-block', width: '70%', ...completedStyle }}
-            onDoubleClick={() => {handleEditingStart()}}
+            onDoubleClick={() => handleEditingStart()}
           >
             {this.props.todoText}
           </span>
@@ -80,7 +80,7 @@ class TodoItem extends Component {
             {' '}
             <button
               className="btn red darken-2"
-              onClick={() => deleteTodo(index)}
+              onClick={() => deleteTodo(id)}
             >
               <i className="material-icons">delete</i>
             </button>
