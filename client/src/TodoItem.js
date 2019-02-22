@@ -28,25 +28,30 @@ class TodoItem extends Component {
     }
   }
 
+  getTodosOnSuccess = async () => {
+    const { props: { id, getTodos }, state: { todoText } } = this;
+    const { data: { success } } = await axios.post('/api/editTodo.php', { id, todoText });
+
+    if (success) {
+      getTodos();
+    }
+  }
+
   handleEditingOnBlur = () => {
     this.setState({
       editing: false,
     });
+
+    this.getTodosOnSuccess();
   }
 
-  handleEditingOnEnter = async e => {
-    const { props: { id, getTodos } , state: { todoText }} = this;
-
+  handleEditingOnEnter = e => {
     if (e.key === 'Enter') {
       this.setState({
         editing: false,
       });
 
-      const { data: { success } } = await axios.post('/api/editTodo.php', { id, todoText });
-
-      if (success) {
-        getTodos();
-      }
+      this.getTodosOnSuccess();
     }
   }
 
