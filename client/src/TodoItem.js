@@ -21,9 +21,11 @@ class TodoItem extends Component {
   completeTodo = async () => {
     const { id, getTodos } = this.props;
     
-    await axios.post('/api/completeTodo.php', { id });
+    const { data: success } = await axios.post('/api/completeTodo.php', { id });
 
-    getTodos();
+    if (success) {
+      getTodos();
+    }
   }
 
   handleEditingOnBlur = () => {

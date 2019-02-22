@@ -8,8 +8,7 @@ header("Content-Type: application/json; charset=utf-8");
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
-$response = [];
-$response["success"] = false;
+$response = array("success" => false);
 
 if (isset($_POST["todoText"]) && !empty($_POST["todoText"])) {
   $todoText = $_POST["todoText"];
