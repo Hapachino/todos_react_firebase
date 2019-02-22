@@ -42,9 +42,11 @@ class TodoItem extends Component {
         editing: false,
       });
 
-      await axios.post('/api/editTodo.php', { id, todoText });
+      const { data: { success } } = await axios.post('/api/editTodo.php', { id, todoText });
 
-      getTodos();
+      if (success) {
+        getTodos();
+      }
     }
   }
 
