@@ -37,9 +37,11 @@ class App extends Component {
   }
 
   deleteTodo = async id => {
-    await axios.post('/api/deleteTodo.php', { id });
+    const { data: { success } } = await axios.post('/api/deleteTodo.php', { id });
     
-    this.getTodos();
+    if (success) {
+      this.getTodos();
+    }
   }
 
   getTodos = async () => {
