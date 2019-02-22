@@ -3,6 +3,7 @@ import TodoItem from './TodoItem';
 
 export default props => {
   const { todos, filter, deleteTodo, getTodos } = props;
+
   const filteredTodos = todos.filter(todo => {
     if (filter === 'all') {
       return true;
@@ -14,6 +15,7 @@ export default props => {
 
     return [];
   });
+  
   const todoList = filteredTodos.length ? 
     filteredTodos.map(todo => {
       const { id, todoText, completed } = todo;

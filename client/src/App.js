@@ -23,10 +23,12 @@ class App extends Component {
   addTodo = async e => {
     const { state: { todoText }, getTodos } = this;
 
-    if (e.key === 'Enter' && todoText) {
-      await axios.post('/api/addTodo.php', { todoText });
-
-      getTodos();
+    if (e.key === 'Enter' && todoText.trim()) {
+      const { data: { success } } = await axios.post('/api/addTodo.php', { todoText });
+      
+      if (success) {
+        getTodos();
+      }
 
       this.setState({
         todoText: '',
