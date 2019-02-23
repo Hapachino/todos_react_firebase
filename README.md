@@ -1,4 +1,4 @@
-# todos_react_php
+# todos_react_firebase
 
 > Demo project using React and PHP
 
@@ -6,9 +6,9 @@
 
 > 1. Fork this repo
 > 1. Clone your forked copy of this repo
->    - `git clone https://github.com/[Your Username]/todos_react_php.git`
+>    - `git clone https://github.com/[Your Username]/todos_react_firebase.git`
 > 1. Change directory into the newly cloned repo
->    - `cd todos_react_php`
+>    - `cd todos_react_firebase`
 > 1. Install dependencies 
 >    - `npm install`
 > 1. Start dev server
