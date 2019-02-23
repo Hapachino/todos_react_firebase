@@ -1,7 +1,7 @@
 {
-  "name": "todos_react_php.git",
+  "name": "todos_react_firebase.git",
   "version": "1.0.0",
-  "description": "",
+  "description": "todo list built with react and firebase",
   "main": "index.js",
   "scripts": {
     "start": "npm start --prefix client",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/Hapachino/todos_react_php.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Erick Brownfield",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Hapachino/todos_react_php/issues"

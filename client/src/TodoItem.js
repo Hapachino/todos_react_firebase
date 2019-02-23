@@ -21,7 +21,7 @@ class TodoItem extends Component {
   completeTodo = async () => {
     const { id, getTodos } = this.props;
     
-    const { data: success } = await axios.post('/api/completeTodo.php', { id });
+    const { data: success } = await axios.post('/api/complete', { id });
 
     if (success) {
       getTodos();
@@ -30,7 +30,7 @@ class TodoItem extends Component {
 
   getTodosOnSuccess = async () => {
     const { props: { id, getTodos }, state: { todoText } } = this;
-    const { data: { success } } = await axios.post('/api/editTodo.php', { id, todoText });
+    const { data: { success } } = await axios.post('/api/edit', { id, todoText });
 
     if (success) {
       getTodos();

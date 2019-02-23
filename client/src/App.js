@@ -24,7 +24,7 @@ class App extends Component {
     const { state: { todoText }, getTodos } = this;
 
     if (e.key === 'Enter' && todoText.trim()) {
-      const { data: { success } } = await axios.post('/api/addTodo.php', { todoText });
+      const { data: { success } } = await axios.post('/api/add', { todoText });
       
       if (success) {
         getTodos();
@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   deleteTodo = async id => {
-    const { data: { success } } = await axios.post('/api/deleteTodo.php', { id });
+    const { data: { success } } = await axios.post('/api/delete', { id });
     
     if (success) {
       this.getTodos();
@@ -45,7 +45,7 @@ class App extends Component {
   }
 
   getTodos = async () => {
-    const { data: todos } = await axios.get('/api/getTodos.php');
+    const { data: todos } = await axios.get('/api/get');
     
     this.setState({
       todos,
