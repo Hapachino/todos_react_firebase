@@ -20,7 +20,11 @@ class TodoItem extends Component {
 
   completeTodo = async () => {
     const { id, getTodos } = this.props;
-    
+    const userId = 1;
+
+    await db.ref(`/todos/${userId}/${id}`).update({
+      
+    })
 
   
   }
