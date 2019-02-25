@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import db from './firebase';
 import InputBar from './InputBar';
 import FilterBar from './FilterBar';
@@ -30,7 +29,6 @@ class App extends Component {
         todoText,
         completed: false,
       });
-      
 
       getTodos();
 
@@ -41,11 +39,10 @@ class App extends Component {
   }
 
   deleteTodo = async id => {
-    const { data: { success } } = await axios.post('/api/delete', { id });
+    const userId = 1;
+    await db.ref(`/todos/${userId}/${id}`).remove();
     
-    if (success) {
-      this.getTodos();
-    }
+    this.getTodos();
   }
 
   getTodos = async () => {
