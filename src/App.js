@@ -40,6 +40,7 @@ class App extends Component {
 
   deleteTodo = async id => {
     const userId = 1;
+    
     await db.ref(`/todos/${userId}/${id}`).remove();
     
     this.getTodos();

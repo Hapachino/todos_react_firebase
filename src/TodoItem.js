@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import db from './firebase';
 import './TodoItem.css';
 
 class TodoItem extends Component {
@@ -21,20 +21,19 @@ class TodoItem extends Component {
   completeTodo = async () => {
     const { id, getTodos } = this.props;
     
-    const { data: success } = await axios.post('/api/complete', { id });
 
-    if (success) {
-      getTodos();
-    }
+  
   }
 
-  getTodosOnSuccess = async () => {
+  editTodo = async () => {
     const { props: { id, getTodos }, state: { todoText } } = this;
-    const { data: { success } } = await axios.post('/api/edit', { id, todoText });
+    const userId = 1;
+    
+    await db.ref(`/todos/${userId}/${id}`).update({
+      todoText,
+    })
 
-    if (success) {
-      getTodos();
-    }
+    getTodos();
   }
 
   handleEditingOnBlur = () => {
@@ -42,7 +41,7 @@ class TodoItem extends Component {
       editing: false,
     });
 
-    this.getTodosOnSuccess();
+    this.editTodo();
   }
 
   handleEditingOnEnter = e => {
@@ -51,7 +50,7 @@ class TodoItem extends Component {
         editing: false,
       });
 
-      this.getTodosOnSuccess();
+      this.editTodo();
     }
   }
 
