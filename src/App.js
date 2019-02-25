@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import db from './firebase';
 import InputBar from './InputBar';
 import FilterBar from './FilterBar';
 import TodoList from './TodoList';
@@ -45,7 +46,9 @@ class App extends Component {
   }
 
   getTodos = async () => {
-    const { data: todos } = await axios.get('/api/get');
+    const userId = 1;
+    const snapshot = await db.ref('/todos/' + userId).once('value');
+    const todos = snapshot.val();
     
     this.setState({
       todos,

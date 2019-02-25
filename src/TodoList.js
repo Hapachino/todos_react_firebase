@@ -4,7 +4,14 @@ import TodoItem from './TodoItem';
 export default props => {
   const { todos, filter, deleteTodo, getTodos } = props;
 
-  const filteredTodos = todos.filter(todo => {
+  const todosArray = Object.keys(todos).map(key => {
+    const item = todos[key];
+    item.id = key;
+
+    return item;
+  });
+
+  const filteredTodos = todosArray.filter(todo => {
     if (filter === 'all') {
       return true;
     } else if (filter === 'active') {
