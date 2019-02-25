@@ -23,13 +23,16 @@ class App extends Component {
 
   addTodo = async e => {
     const { state: { todoText }, getTodos } = this;
+    const userId = 1;
 
     if (e.key === 'Enter' && todoText.trim()) {
-      const { data: { success } } = await axios.post('/api/add', { todoText });
+      db.ref('/todos/' + userId).push({
+        todoText,
+        completed: false,
+      });
       
-      if (success) {
-        getTodos();
-      }
+
+      getTodos();
 
       this.setState({
         todoText: '',
