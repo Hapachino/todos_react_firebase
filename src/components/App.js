@@ -14,18 +14,16 @@ class App extends Component {
 
     this.state = {
       todoText: '',
-      todos: [],
       filter: 'all',
     }
   }
 
   async componentDidMount() {
-    // this.getTodos();
     this.dbRef = this.props.getTodos();
   }
 
   addTodo = async e => {
-    const { state: { todoText }, getTodos } = this;
+    const { state: { todoText } } = this;
     const userId = 1;
 
     if (e.key === 'Enter' && todoText.trim()) {
@@ -33,8 +31,6 @@ class App extends Component {
         todoText,
         completed: false,
       });
-
-      getTodos();
 
       this.setState({
         todoText: '',
@@ -46,18 +42,6 @@ class App extends Component {
     const userId = 1;
     
     await db.ref(`/todos/${userId}/${id}`).remove();
-    
-    this.getTodos();
-  }
-
-  getTodos = async () => {
-    const userId = 1;
-    const snapshot = await db.ref('/todos/' + userId).once('value');
-    const todos = snapshot.val();
-    
-    this.setState({
-      todos,
-    });
   }
 
   handleFilterChange = e => {
@@ -73,7 +57,7 @@ class App extends Component {
   };
 
   render() {
-    const { state: { todoText, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo, getTodos } = this;
+    const { state: { todoText, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo } = this;
     
     return (
       <div className="container">
@@ -91,7 +75,6 @@ class App extends Component {
           todos={this.props.todos}
           filter={filter} 
           deleteTodo={deleteTodo} 
-          getTodos={getTodos} 
         />
       </div>
     );

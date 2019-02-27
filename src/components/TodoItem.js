@@ -19,25 +19,21 @@ class TodoItem extends Component {
   }
 
   completeTodo = async () => {
-    const { completed, id, getTodos } = this.props;
+    const { completed, id } = this.props;
     const userId = 1;
 
     await db.ref(`/todos/${userId}/${id}`).update({
       completed: !completed,
     })
-
-    getTodos();
   }
 
   editTodo = async () => {
-    const { props: { id, getTodos }, state: { todoText } } = this;
+    const { props: { id }, state: { todoText } } = this;
     const userId = 1;
     
     await db.ref(`/todos/${userId}/${id}`).update({
       todoText,
     })
-
-    getTodos();
   }
 
   handleEditingOnBlur = () => {

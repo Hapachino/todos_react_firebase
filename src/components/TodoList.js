@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from './TodoItem';
 
 export default props => {
-  const { todos, filter, deleteTodo, getTodos } = props;
+  const { todos, filter, deleteTodo } = props;
 
   const todosArray = Object.keys(todos).map(key => {
     const item = todos[key];
@@ -34,7 +34,6 @@ export default props => {
           key={id}
           id={id}
           deleteTodo={deleteTodo}
-          getTodos={getTodos}
         />
       );
     }) : (
