@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import db from './firebase';
+import db from '../firebase';
 import InputBar from './InputBar';
 import FilterBar from './FilterBar';
 import TodoList from './TodoList';
