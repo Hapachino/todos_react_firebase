@@ -1,11 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { getTodos } from '../action';
 import db from '../firebase';
 import InputBar from './InputBar';
-import Navbar from './Navbar';
 import FilterBar from './FilterBar';
 import TodoList from './TodoList';
 import './App.css';
@@ -22,6 +20,12 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     this.dbRef = this.props.getTodos();
+  }
+
+  componentWillUnmount() {
+    if (this.dbRef) {
+      this.dbRef.off();
+    }
   }
 
   addTodo = async e => {
