@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { getTodos } from '../action';
 import db from '../firebase';
 import InputBar from './InputBar';
+import Navbar from './Navbar';
 import FilterBar from './FilterBar';
 import TodoList from './TodoList';
 import './App.css';
@@ -60,23 +61,26 @@ class App extends Component {
     const { state: { todoText, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo } = this;
     
     return (
-      <div className="container">
-        <h1 className="center red-text">todos</h1>
-        <InputBar
-          todoText={todoText} 
-          handleTextChange={handleTextChange}
-          addTodo={addTodo}
-        />
-        <FilterBar
-          filter={filter} 
-          handleFilterChange={handleFilterChange} 
-        />
-        <TodoList 
-          todos={this.props.todos}
-          filter={filter} 
-          deleteTodo={deleteTodo} 
-        />
-      </div>
+      <Fragment>
+        <Navbar />
+        <div className="container">
+          <h1 className="center red-text">todos</h1>
+          <InputBar
+            todoText={todoText}
+            handleTextChange={handleTextChange}
+            addTodo={addTodo}
+          />
+          <FilterBar
+            filter={filter}
+            handleFilterChange={handleFilterChange}
+          />
+          <TodoList
+            todos={this.props.todos}
+            filter={filter}
+            deleteTodo={deleteTodo}
+          />
+        </div>
+      </Fragment>
     );
   }
 }
