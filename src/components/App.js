@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { getTodos } from '../action';
 import db from '../firebase';
 import InputBar from './InputBar';
 import FilterBar from './FilterBar';
@@ -17,7 +20,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.getTodos();
+    // this.getTodos();
+    this.dbRef = this.props.getTodos();
   }
 
   addTodo = async e => {
@@ -69,7 +73,7 @@ class App extends Component {
   };
 
   render() {
-    const { state: { todoText, todos, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo, getTodos } = this;
+    const { state: { todoText, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo, getTodos } = this;
     
     return (
       <div className="container">
@@ -84,7 +88,7 @@ class App extends Component {
           handleFilterChange={handleFilterChange} 
         />
         <TodoList 
-          todos={todos}
+          todos={this.props.todos}
           filter={filter} 
           deleteTodo={deleteTodo} 
           getTodos={getTodos} 
@@ -94,4 +98,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  todos: state.todos.todos,
+});
+
+export default connect(mapStateToProps, {
+  getTodos,
+})(App);
