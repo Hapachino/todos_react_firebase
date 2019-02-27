@@ -66,7 +66,7 @@ class Dashboard extends Component {
     const { state: { todoText, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo } = this;
 
     return (
-      <div>
+      <div className="container maxWidth800">
         <h1 className="center red-text">todos</h1>
         <InputBar
           todoText={todoText}
