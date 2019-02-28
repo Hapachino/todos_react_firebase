@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../action';
@@ -21,36 +21,45 @@ const signOutLinks = [
   }
 ];
 
-const renderLinks = (links) => {
-  const outputLinks = links.map(link => {
-    const { to, text } = link;
+class Navbar extends Component {
+  renderLinks = (links) => {
+    return links.map(link => {
+      const { to, text } = link;
 
+      return (
+        <li key={to}>
+          <NavLink to={to}>{text}</NavLink>
+        </li>
+      );
+    });
+  };
+
+  signOutElement = () => {
     return (
-      <li key={to}>
-        <NavLink to={to}>{text}</NavLink>
+      <li key="/sign-out">
+        <button onClick={this.props.signOut} className="btn blue lighten-2">Sign Out</button>
       </li>
     );
-  });
+  }
 
-  return (
-    <ul className="right">
-      {outputLinks}
-    </ul>
-  );
+  render() {
+    const { auth } = this.props;
+    const { renderLinks, signOutElement } = this;
+    console.log(auth);
+    return (
+      <nav className="nav-wrapper blue lighten-2">
+        <div className="container">
+          <Link to="/" className="brand-logo">Do It</Link>
+          <ul className="right">
+            {auth ? [...(renderLinks(signInLinks)), signOutElement()]: renderLinks(signOutLinks)}
+          </ul>
+        </div>
+      </nav>
+    );
+  }
 }
 
-const Navbar = props => {
-  const { auth } = props;
-  console.log(auth);
-  return (
-    <nav className="nav-wrapper blue lighten-2">
-      <div className="container">
-        <Link to="/" className="brand-logo">Do It</Link>
-        {auth ? renderLinks(signInLinks) : renderLinks(signOutLinks)}
-      </div>
-    </nav>
-  );
-}
+
 
 const mapStateToProps = state => {
   return {

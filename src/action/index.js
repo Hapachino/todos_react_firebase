@@ -24,10 +24,12 @@ export const authChange = dispatch => {
         uid,
         username
       });
+      console.log('signing in');
     } else {
       dispatch({
         type: types.SIGN_OUT
       });
+      console.log('signing out');
     }
   });
 }
@@ -35,10 +37,6 @@ export const authChange = dispatch => {
 export const signIn = ({ email, password }) => async dispatch => {
   try {
     await auth.signInWithEmailAndPassword(email, password);
-    
-    dispatch({
-      type: types.SIGN_IN,
-    });
   } catch (err) {
 
     dispatch({
