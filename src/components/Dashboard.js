@@ -18,9 +18,9 @@ class Dashboard extends Component {
     }
   }
 
-  async componentDidMount() {
-    const { getTodos, uid } = this.props;
-
+  componentDidMount() {
+    const { getTodos } = this.props;
+    const uid = localStorage.getItem('uid');
     this.dbRef = getTodos(uid);
   }
 
@@ -31,11 +31,10 @@ class Dashboard extends Component {
   }
 
   addTodo = async e => {
-    const { state: { todoText } } = this;
-    const userId = 1;
-
+    const { state: { todoText }, props: { uid } } = this;
+    
     if (e.key === 'Enter' && todoText.trim()) {
-      db.ref('/todos/' + userId).push({
+      db.ref('/todos/' + uid).push({
         todoText,
         completed: false,
       });
@@ -66,7 +65,7 @@ class Dashboard extends Component {
 
   render() {
     const { state: { todoText, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo } = this;
-
+    console.log(this.props.uid);
     return (
       <div className="container maxWidth800">
         <h1 className="center red-text">todos</h1>

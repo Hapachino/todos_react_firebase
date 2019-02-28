@@ -45,7 +45,7 @@ class Navbar extends Component {
   render() {
     const { auth } = this.props;
     const { renderLinks, signOutElement } = this;
-    console.log(auth);
+    
     return (
       <nav className="nav-wrapper blue lighten-2">
         <div className="container">
