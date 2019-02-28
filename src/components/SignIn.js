@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { auth } from '../firebase';
+import { signIn } from '../action';
 
 class SignIn extends Component {
   state = {
@@ -17,18 +17,8 @@ class SignIn extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { email, password } = this.state;
 
-    auth.signInWithEmailAndPassword(email, password)
-        .then(user => {
-          this.props.history.push('/');
-          console.log(user);
-        })
-        .catch(error => {
-          this.setState({ error: error });
-
-          console.log(error);
-        });
+    this.props.signIn(this.state);
   };
 
   render() {
@@ -57,4 +47,6 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default connect(null, {
+  signIn,
+})(SignIn);
