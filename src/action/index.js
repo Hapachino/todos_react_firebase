@@ -1,8 +1,7 @@
 import types from './types';
 import db, { auth } from '../firebase';
 
-export const getTodos = () => dispatch => {
-  const userId = 1;
+export const getTodos = userId => dispatch => {
   const dbRef = db.ref('/todos/' + userId);
 
   dbRef.on('value', snapshot => {
@@ -24,12 +23,10 @@ export const authChange = dispatch => {
         uid,
         username
       });
-      console.log('signing in');
     } else {
       dispatch({
         type: types.SIGN_OUT
       });
-      console.log('signing out');
     }
   });
 }

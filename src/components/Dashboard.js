@@ -19,7 +19,9 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    this.dbRef = this.props.getTodos();
+    const { getTodos, uid } = this.props;
+
+    this.dbRef = getTodos(uid);
   }
 
   componentWillUnmount() {
@@ -78,7 +80,7 @@ class Dashboard extends Component {
           handleFilterChange={handleFilterChange}
         />
         <TodoList
-          todos={this.props.todos}
+          todos={this.props.todos || {}}
           filter={filter}
           deleteTodo={deleteTodo}
         />
@@ -89,6 +91,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   todos: state.todos.todos,
+  uid: state.users.uid,
 });
 
 export default connect(mapStateToProps, {
