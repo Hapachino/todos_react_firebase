@@ -5,6 +5,7 @@ import './App.css';
 import Dashboard from './Dashboard';
 import Navbar from './Navbar';
 import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Dashboard} />
               <Route path="/signin" component={SignIn} />
+              <Route path="/signup" component={SignUp} />
             </Switch>
           </div>
         </div>
