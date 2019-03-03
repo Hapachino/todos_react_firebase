@@ -3,7 +3,7 @@ import db, { auth } from '../firebase';
 
 export const getTodos = uid => dispatch => {
   const dbRef = db.ref('/todos/' + uid);
-  console.log(uid);
+  
   dbRef.on('value', snapshot => {
     dispatch({
       type: types.GET_TODOS,
@@ -18,16 +18,12 @@ export const authChange = dispatch => {
   auth.onAuthStateChanged(user => {
     if (user) {
       const { uid } = user;
-    
-      localStorage.setItem('uid', uid);
 
       dispatch({
         type: types.SIGN_IN,
         uid,
       });
     } else {
-      localStorage.removeItem('uid');
-
       dispatch({
         type: types.SIGN_OUT
       });

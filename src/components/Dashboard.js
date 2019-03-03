@@ -19,9 +19,17 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const { getTodos } = this.props;
-    const uid = localStorage.getItem('uid');
+    const { getTodos, uid } = this.props;
+
     this.dbRef = getTodos(uid);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { getTodos, uid } = this.props;
+
+    if (prevProps.uid !== uid) {
+      this.dbRef = getTodos(uid);
+    }
   }
 
   componentWillUnmount() {
@@ -65,7 +73,7 @@ class Dashboard extends Component {
 
   render() {
     const { state: { todoText, filter }, handleFilterChange, handleTextChange, addTodo, deleteTodo } = this;
-    console.log(this.props.uid);
+    
     return (
       <div className="container maxWidth800">
         <h1 className="center red-text">todos</h1>
