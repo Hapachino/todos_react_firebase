@@ -41,9 +41,8 @@ class TodoItem extends Component {
 
   editTodo = async () => {
     const { props: { id }, state: { todoText } } = this;
-    const userId = 1;
     
-    await db.ref(`/todos/${userId}/${id}`).update({
+    await this.dbRef.child(id).update({
       todoText,
     })
   }
