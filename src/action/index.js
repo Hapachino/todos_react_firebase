@@ -10,8 +10,6 @@ export const getTodos = uid => dispatch => {
       todos: snapshot.val(),
     })
   })
-
-  return dbRef;
 };
 
 export const authChange = dispatch => {

@@ -20,22 +20,25 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const { getTodos, uid } = this.props;
+    this.dbRef = db.ref('/todos/' + this.props.uid);
 
-    this.dbRef = getTodos(uid);
+    getTodos(uid);
   }
 
   componentDidUpdate(prevProps) {
     const { getTodos, uid } = this.props;
 
     if (prevProps.uid !== uid) {
-      this.dbRef = getTodos(uid);
+      getTodos(uid);
+
+      this.dbRef = db.ref('/todos/' + this.props.uid);
     }
   }
 
   componentWillUnmount() {
-    if (this.dbRef) {
-      this.dbRef.off();
-    }
+    const { dbRef } = this;
+
+    dbRef && dbRef.off();
   }
 
   addTodo = async e => {
@@ -54,9 +57,9 @@ class Dashboard extends Component {
   }
 
   deleteTodo = async id => {
-    const userId = 1;
+    const { dbRef } = this;
 
-    await db.ref(`/todos/${userId}/${id}`).remove();
+    await dbRef.child(id).remove();
   }
 
   handleFilterChange = e => {
