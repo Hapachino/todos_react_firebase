@@ -20,7 +20,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const { getTodos, uid } = this.props;
-    this.dbRef = db.ref('/todos/' + this.props.uid);
+    this.dbRef = db.ref('/todos/' + uid);
 
     getTodos(uid);
   }
@@ -31,7 +31,7 @@ class Dashboard extends Component {
     if (prevProps.uid !== uid) {
       getTodos(uid);
 
-      this.dbRef = db.ref('/todos/' + this.props.uid);
+      this.dbRef = db.ref('/todos/' + uid);
     }
   }
 

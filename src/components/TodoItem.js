@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import db from '../firebase';
 import './TodoItem.css';
 
@@ -12,17 +13,28 @@ class TodoItem extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
+    const { uid } = this.props;
+
+    this.dbRef = db.ref('/todos/' + uid);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { input, props: { uid }} = this;
+
     if (this.state.editing) {
-      this.input.focus();
+      input.focus();
+    }
+
+    if (prevProps.uid !== uid) {
+      this.dbRef = db.ref('/todos/' + uid);
     }
   }
 
   completeTodo = async () => {
     const { completed, id } = this.props;
-    const userId = 1;
 
-    await db.ref(`/todos/${userId}/${id}`).update({
+    await this.dbRef.child(id).update({
       completed: !completed,
     })
   }
@@ -118,4 +130,8 @@ class TodoItem extends Component {
   };
 }
 
-export default TodoItem;
+const mapStateToProps = state => ({
+  uid: state.users.uid,
+});
+
+export default connect(mapStateToProps)(TodoItem);
