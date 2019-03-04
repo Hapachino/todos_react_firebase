@@ -40,9 +40,12 @@ class Navbar extends Component {
   }
 
   profileElement = () => {
+    const { firstName, lastName } = this.props;
+    const initials = firstName[0] + lastName[0];
+    
     return (
       <li key="/">
-        <button style={{ margin: '0 10px'}} className="btn btn-floating blue">EB</button>
+        <button style={{ margin: '0 10px'}} className="btn btn-floating blue">{initials}</button>
       </li>
     );
   }
@@ -65,8 +68,12 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => {
+  const { auth, firstName, lastName } = state.users;
+
   return {
-    auth: state.users.auth,
+    auth,
+    firstName,
+    lastName,
   };
 }
 
