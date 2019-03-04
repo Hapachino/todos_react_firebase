@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import auth from '../hoc/auth';
+import AddTodoList from './AddTodoList';
 import Collection from './Collection';
 import Dashboard from './Dashboard';
 import Navbar from './Navbar';
@@ -18,6 +19,7 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path="/" component={auth(Dashboard)} />
+              <Route path="/new" component={AddTodoList} />
               <Route path="/collection" component={Collection} />
               <Route path="/signin" component={auth(SignIn, '/', true)} />
               <Route path="/signup" component={auth(SignUp, '/', true)} />
