@@ -16,10 +16,17 @@ export const authChange = dispatch => {
   auth.onAuthStateChanged(user => {
     if (user) {
       const { uid } = user;
-
-      dispatch({
-        type: types.SIGN_IN,
-        uid,
+      const dbRef = db.ref('/users/' + uid);
+      
+      dbRef.once('value', snapshot => {
+        const { firstName, lastName } = snapshot.val();
+        
+        dispatch({
+          type: types.SIGN_IN,
+          uid,
+          firstName,
+          lastName,
+        });
       });
     } else {
       dispatch({
@@ -44,9 +51,16 @@ export const signOut = () => () => {
   auth.signOut();
 }
 
-export const signUp = ({ email, password }) => async dispatch => {
+export const signUp = ({ email, password, firstName, lastName }) => async dispatch => {
   try {
     await auth.createUserWithEmailAndPassword(email, password);
+
+    const dbRef = db.ref('/users/' + auth.currentUser.uid);
+
+    dbRef.set({
+      firstName,
+      lastName,
+    });
   } catch(error) {
     dispatch({
       type: types.AUTH_ERROR,

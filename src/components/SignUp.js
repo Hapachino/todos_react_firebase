@@ -37,6 +37,14 @@ class SignUp extends Component {
             <input type="password" id="password" onChange={handleTextChange} />
           </div>
           <div className="input-field">
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" id="firstName" onChange={handleTextChange} />
+          </div>
+          <div className="input-field">
+            <label htmlFor="lastName">Last Name</label>
+            <input type="text" id="lastName" onChange={handleTextChange} />
+          </div>
+          <div className="input-field">
             <button className="btn blue lighten-1">
               Sign Up
             </button>

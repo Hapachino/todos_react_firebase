@@ -22,6 +22,7 @@ export default (WrappedComponent, to = '/signin', redirect = false) => {
     }
 
     render() {
+      console.log(this.props.firstName);
       return <WrappedComponent {...this.props} />;
     }
   }
@@ -31,4 +32,5 @@ export default (WrappedComponent, to = '/signin', redirect = false) => {
 
 const mapStateToProps = state => ({
   auth: state.users.auth,
+  firstName: state.users.firstName,
 });

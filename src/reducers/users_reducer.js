@@ -4,6 +4,8 @@ const DEFAULT_STATE = {
   auth: false,
   error: '',
   uid: null,
+  firstName: '',
+  lastName: '',
 };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -13,7 +15,7 @@ export default (state = DEFAULT_STATE, action) => {
     case types.CLEAR_AUTH_ERROR:
       return { ...state, error: '' };
     case types.SIGN_IN:
-      return { auth: true, error: '', uid: action.uid };
+      return { auth: true, error: '', uid: action.uid, firstName: action.firstName, lastName: action.lastName };
     case types.SIGN_OUT:
       return { ...DEFAULT_STATE };
     default:

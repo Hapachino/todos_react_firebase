@@ -42,7 +42,7 @@ class Navbar extends Component {
   profileElement = () => {
     return (
       <li key="/">
-        <button style={{ margin: '0 10px'}} className="btn btn-floating blue"></button>
+        <button style={{ margin: '0 10px'}} className="btn btn-floating blue">EB</button>
       </li>
     );
   }
@@ -63,8 +63,6 @@ class Navbar extends Component {
     );
   }
 }
-
-
 
 const mapStateToProps = state => {
   return {
