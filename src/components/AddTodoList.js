@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 export class AddTodoList extends Component {
+  state = {
+    title: '',
+    description: '',
+    error: '',
+  }
+
   handleTextChange = e => {
     this.setState({
       [e.target.id]: e.target.value,
@@ -8,12 +14,20 @@ export class AddTodoList extends Component {
   }
 
   handleSubmit = e => {
+    const { title, description } = this.state;
+
     e.preventDefault();
+
+    if (!title || !description) {
+      this.setState({
+        error: 'Please enter title and description',
+      });
+    }
   }
 
   render() {
     const { handleTextChange, handleSubmit } = this;
-    
+
     return (
       <div className="container">
         <form onSubmit={handleSubmit}>
