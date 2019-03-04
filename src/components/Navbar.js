@@ -4,10 +4,7 @@ import { connect } from 'react-redux';
 import { signOut } from '../action';
 
 const signInLinks = [
-  {
-    to: '/signout',
-    text: 'Sign Out',
-  }
+
 ];
 
 const signOutLinks = [
@@ -36,22 +33,30 @@ class Navbar extends Component {
 
   signOutElement = () => {
     return (
-      <li key="/sign-out">
-        <button onClick={this.props.signOut} className="btn blue lighten-2">Sign Out</button>
+      <li key="/signout">
+        <button onClick={this.props.signOut} className="btn blue ">Sign Out</button>
+      </li>
+    );
+  }
+
+  profileElement = () => {
+    return (
+      <li key="/">
+        <button style={{ margin: '0 10px'}} className="btn btn-floating blue"></button>
       </li>
     );
   }
 
   render() {
     const { auth } = this.props;
-    const { renderLinks, signOutElement } = this;
+    const { profileElement, renderLinks, signOutElement } = this;
     
     return (
       <nav className="nav-wrapper blue lighten-2">
         <div className="container">
-          <Link to="/" className="brand-logo">Do It</Link>
+          <Link to="/" className="brand-logo">todos</Link>
           <ul className="right">
-            {auth ? [...(renderLinks(signInLinks)), signOutElement()]: renderLinks(signOutLinks)}
+            {auth ? [...(renderLinks(signInLinks)), signOutElement(), profileElement()]: renderLinks(signOutLinks)}
           </ul>
         </div>
       </nav>
