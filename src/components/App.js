@@ -20,7 +20,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={auth(Dashboard)} />
               <Route path="/new" component={auth(AddTodoList)} />
-              <Route path="/collection" component={Collection} />
+              <Route path="/collection" component={auth(Collection)} />
               <Route path="/signin" component={auth(SignIn, '/', true)} />
               <Route path="/signup" component={auth(SignUp, '/', true)} />
             </Switch>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import db from '../firebase';
 
 export class AddTodoList extends Component {
   state = {
@@ -16,6 +17,7 @@ export class AddTodoList extends Component {
 
   handleSubmit = e => {
     const { title, description } = this.state;
+    const { uid } = this.props;
 
     e.preventDefault();
 
@@ -24,11 +26,18 @@ export class AddTodoList extends Component {
         error: 'Please enter title and description',
       });
     }
+
+    const dbRef = db.ref('/collection/' + uid);
+
+    dbRef.push({
+      title,
+      description,
+    });
   }
 
   render() {
     const { handleTextChange, handleSubmit } = this;
-    console.log(this.props.uid);
+    
     return (
       <div className="container">
         <form onSubmit={handleSubmit}>
