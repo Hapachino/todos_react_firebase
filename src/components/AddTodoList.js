@@ -33,6 +33,12 @@ export class AddTodoList extends Component {
       title,
       description,
     });
+
+    this.setState({
+      title: '',
+      description: '',
+      error: '',
+    });
   }
 
   render() {
