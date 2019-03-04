@@ -1,6 +1,6 @@
 # todos_react_firebase
 
-> Demo project using React and PHP
+> Todo List app supporting multiple users using React, Redux, and Firebase
 
 ### Setup Instructions
 
