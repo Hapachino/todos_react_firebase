@@ -32,14 +32,25 @@ export const authChange = dispatch => {
 export const signIn = ({ email, password }) => async dispatch => {
   try {
     await auth.signInWithEmailAndPassword(email, password);
-  } catch (err) {
+  } catch (error) {
     dispatch({
       type: types.AUTH_ERROR,
-      error: err,
+      error,
     });
   }
 }
 
 export const signOut = () => () => {
   auth.signOut();
+}
+
+export const signUp = ({ email, password }) => async dispatch => {
+  try {
+    await auth.createUserWithEmailAndPassword(email, password);
+  } catch(error) {
+    dispatch({
+      type: types.AUTH_ERROR,
+      error,
+    });
+  }
 }

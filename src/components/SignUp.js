@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signIn } from '../action';
+import { signUp } from '../action';
 
 class SignUp extends Component {
   state = {
@@ -18,7 +18,7 @@ class SignUp extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.signIn(this.state);
+    this.props.signUp(this.state);
   };
 
   render() {
@@ -48,5 +48,5 @@ class SignUp extends Component {
 }
 
 export default connect(null, {
-  signIn,
+  signUp,
 })(SignUp);
