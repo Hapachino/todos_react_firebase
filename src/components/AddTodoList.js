@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 export class AddTodoList extends Component {
   state = {
@@ -27,7 +28,7 @@ export class AddTodoList extends Component {
 
   render() {
     const { handleTextChange, handleSubmit } = this;
-
+    console.log(this.props.uid);
     return (
       <div className="container">
         <form onSubmit={handleSubmit}>
@@ -51,4 +52,8 @@ export class AddTodoList extends Component {
   }
 }
 
-export default AddTodoList
+const mapStateToProps = state => ({
+  uid: state.users.uid,
+});
+
+export default connect(mapStateToProps)(AddTodoList);

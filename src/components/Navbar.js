@@ -4,7 +4,14 @@ import { connect } from 'react-redux';
 import { signOut } from '../action';
 
 const signInLinks = [
-
+  {
+    to: '/new',
+    text: 'New List',
+  },
+  {
+    to: '/collection',
+    text: 'Todo Lists'
+  }
 ];
 
 const signOutLinks = [
@@ -42,7 +49,7 @@ class Navbar extends Component {
   profileElement = () => {
     const { firstName, lastName } = this.props;
     const initials = firstName[0] + lastName[0];
-    
+
     return (
       <li key="/">
         <button style={{ margin: '0 10px'}} className="btn btn-floating blue">{initials}</button>
