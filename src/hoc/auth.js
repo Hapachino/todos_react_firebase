@@ -16,6 +16,8 @@ export default (WrappedComponent, to = '/signin', redirect = false) => {
 
       if (auth === redirect) {
         history.push(to);
+      } else {
+        return true;
       }
     }
 
@@ -26,7 +28,6 @@ export default (WrappedComponent, to = '/signin', redirect = false) => {
 
   return connect(mapStateToProps)(Auth);
 }
-
 
 const mapStateToProps = state => ({
   auth: state.users.auth,
