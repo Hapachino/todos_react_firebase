@@ -6,6 +6,8 @@ class SignUp extends Component {
   state = {
     email: '',
     password: '',
+    firstName: '',
+    lastName: '',
     error: '',
   }
 
@@ -16,13 +18,23 @@ class SignUp extends Component {
   }
 
   handleSubmit = e => {
+    const { email, password, firstName, lastName } = this.state;
+
     e.preventDefault();
+
+    if (!email || !password || !firstName || !lastName) {
+      this.setState({
+        error: 'Please enter all fields',
+      });
+
+      return;
+    }
 
     this.props.signUp(this.state);
   };
 
   render() {
-    const { handleSubmit, handleTextChange } = this;
+    const { state: { error }, handleSubmit, handleTextChange } = this;
 
     return (
       <div className="container">
@@ -44,6 +56,7 @@ class SignUp extends Component {
             <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" onChange={handleTextChange} />
           </div>
+          <p className="red-text">{error}</p>
           <div className="input-field">
             <button className="btn blue lighten-1">
               Sign Up
