@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import auth from '../hoc/auth';
+import Collection from './Collection';
 import Dashboard from './Dashboard';
 import Navbar from './Navbar';
 import SignIn from './SignIn';
@@ -17,6 +18,7 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path="/" component={auth(Dashboard)} />
+              <Route path="/collection" component={Collection} />
               <Route path="/signin" component={auth(SignIn, '/', true)} />
               <Route path="/signup" component={auth(SignUp, '/', true)} />
             </Switch>
